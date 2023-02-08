@@ -44,6 +44,59 @@ keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 --keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 --keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
--- Switch tab
-keymap("n", "<S-Left>", ":tabp<CR>")
-keymap("n", "<S-Right>", ":tabn<CR>")
+-- move the current line below
+keymap("n", "<leader>-", "ddp")
+
+-- move the current line above
+keymap("n", "<leader>_", "ddkP")
+
+-- switch tab
+keymap("n", "<S-right>", ":tabn<CR>")
+keymap("n", "<S-left>", ":tabp<CR>")
+keymap("n", "<S-z>", ":tabs<CR>")
+keymap("n", "<S-t>", ":tabe")
+
+-- Handle  buffer switch
+keymap("n", "<S-up>", ":bp<CR>")
+keymap("n", "<S-down>", ":bn<CR>")
+keymap("n", "<S-b>", ":ls<CR>")
+keymap("n", "<S-e>", ":e")
+
+-- Quickfix
+keymap("n", "<leader>co", ":copen<CR>:set modifiable<CR>")
+keymap("n", "<leader>cn", ":cn<CR>")
+keymap("n", "<leader>cp", ":cp<CR>")
+keymap("n", "<leader>cq", ":cclose<CR>")
+
+-- Handle windows
+-- Maximize & minimize current windows
+keymap("n", "<Space><up>", "<C-W>|<C-W>_")
+keymap("n", "<Space><down>", "<C-W>=")
+keymap("n", "<C-W>M", "<C-W>|<C-W>_")
+keymap("n", "<C-W>m", "<C-W>=")
+
+-- set moving between windows to ctrl+arrows
+keymap("n", "<C-S-Right>", "<c-w>l", { silent = true })
+keymap("n", "<C-S-Left>", "<c-w>h", { silent = true })
+keymap("n", "<C-S-Up>", "<c-w>k", { silent = true })
+keymap("n", "<C-S-Down>", "<c-w>j", { silent = true })
+keymap("n", "<C-S-u>", "<c-w>s", { silent = true })
+keymap("n", "<C-S-v>", "<c-w>v", { silent = true })
+keymap("n", "<C-S-c>", "<c-w>c", { silent = true })
+
+-- set moving between windows to ctrl+hjkl
+keymap("n", "<C-l>", "<c-w>l", { silent = true })
+keymap("n", "<C-h>", "<c-w>h", { silent = true })
+keymap("n", "<C-k>", "<c-w>k", { silent = true })
+keymap("n", "<C-j>", "<c-w>j", { silent = true })
+
+-- remove last search highlight
+keymap("n", "<Space>l", ":nohlsearch<CR><C-l>")
+
+keymap("n", "<C-a>", "ggVG")
+keymap("n", "<S-w>", ":w!<CR>")
+keymap("n", "<S-w-q>", ":wq!<CR>")
+keymap("n", "<S-c>", ":close")
+keymap("n", "<S-q>", ":q!<CR>")
+keymap("n", "<tab>", ">><ESC>")
+keymap("n", "<S-tab>", "<<<ESC>")
