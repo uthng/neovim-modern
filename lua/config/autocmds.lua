@@ -63,3 +63,57 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+-- Setup ident, spaces etc. following filetypes
+local grpStyleIndent = vim.api.nvim_create_augroup("StyleIndent", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.yml", "*.yaml" },
+  command = "set filetype=ansible.yaml expandtab tabstop=2 shiftwidth=2 softtabstop=2",
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.vue" },
+  command = "set filetype=html.css expandtab tabstop=2 shiftwidth=2 softtabstop=2",
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.md", "*.tf", "*.js" },
+  command = "set expandtab tabstop=2 shiftwidth=2 softtabstop=2",
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.rs" },
+  command = "set expandtab tabstop=4 shiftwidth=4 softtabstop=4",
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.go" },
+  command = "set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8",
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.rs" },
+  command = "set expandtab tabstop=4 shiftwidth=4 softtabstop=4",
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.rs", "*.go", "*.php", "*.vue", "*.js", "*.ts", "*.tsx" },
+  callback = function()
+    vim.lsp.buf.formatting_sync(nil, 200)
+  end,
+  group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.diagnostic.open_float(nil, { focusable = false })
+  end,
+  group = grpStyleIndent,
+})
