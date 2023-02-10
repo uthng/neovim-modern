@@ -84,7 +84,7 @@ return {
   {
     "simrat39/inlay-hints.nvim",
     config = function(_, _)
-      require("inlay-hints").setup(opts)
+      require("inlay-hints").setup()
     end,
   },
 }
