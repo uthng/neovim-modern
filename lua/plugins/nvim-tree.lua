@@ -11,6 +11,11 @@ return {
     view = {
       number = true,
       relativenumber = true,
+      mappings = {
+        list = {
+          { key = "t", action = "tabnew" },
+        },
+      },
     },
     filters = {
       custom = { ".git" },
