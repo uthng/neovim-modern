@@ -37,7 +37,7 @@ return {
         h = { name = "+Help" },
         g = { name = "+Git" },
         p = { name = "+Project" },
-        t = { name = "+Test", N = { name = "Neotest" }, o = { "Overseer" } },
+        -- t = { name = "+Test", N = { name = "Neotest" }, o = { "Overseer" } },
         v = { name = "+View" },
         z = { name = "+System" },
         -- stylua: ignore
@@ -62,6 +62,10 @@ return {
             p = "Parameter",
             c = "Class",
           },
+        },
+        t = {
+          name = "+Term",
+          g = { "<cmd>lua require('utils.term').git_client_toggle()<CR>", "Git TUI" },
         },
       }, { prefix = "<leader>" })
     end,
