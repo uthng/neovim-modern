@@ -39,16 +39,22 @@ keymap("v", "<A-k>", ":m '<-2<CR>gv=gv")
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
 -- Resize window using <shift> arrow keys
---keymap("n", "<S-Up>", "<cmd>resize +2<CR>")
---keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
---keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
---keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
+keymap("n", "<A-Down>", "<cmd>resize +2<CR>")
+keymap("n", "<A-Up>", "<cmd>resize -2<CR>")
+keymap("n", "<A-Right>", "<cmd>vertical resize -2<CR>")
+keymap("n", "<A-Left>", "<cmd>vertical resize +2<CR>")
 
 -- move the current line below
 keymap("n", "<leader>-", "ddp")
 
 -- move the current line above
 keymap("n", "<leader>_", "ddkP")
+
+-- Open MYVIMRC in a vsplit
+keymap("n", "<leader>ev", ":split $MYVIMRC<cr>")
+
+-- Source MYVIMRC
+keymap("n", "<leader>sv", ":source $MYVIMRC<cr>")
 
 -- switch tab
 keymap("n", "<S-right>", ":tabn<CR>")
@@ -57,8 +63,9 @@ keymap("n", "<S-z>", ":tabs<CR>")
 keymap("n", "<S-t>", ":tabe")
 
 -- Handle  buffer switch
-keymap("n", "<S-up>", ":bp<CR>")
-keymap("n", "<S-down>", ":bn<CR>")
+keymap("n", "<S-A-up>", ":bp<CR>")
+keymap("n", "<S-A-down>", ":bn<CR>")
+keymap("n", "<S-d>", ":bdelete<CR>")
 keymap("n", "<S-b>", ":ls<CR>")
 keymap("n", "<S-e>", ":e")
 
@@ -95,7 +102,7 @@ keymap("n", "<Space>l", ":nohlsearch<CR><C-l>")
 
 keymap("n", "<C-a>", "ggVG")
 keymap("n", "<S-w>", ":w!<CR>")
-keymap("n", "<S-w-q>", ":wq!<CR>")
+keymap("i", "<S-w>", "<ESC>:w!<CR>")
 keymap("n", "<S-c>", ":close")
 keymap("n", "<S-q>", ":q!<CR>")
 keymap("n", "<tab>", ">><ESC>")
