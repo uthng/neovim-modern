@@ -63,9 +63,16 @@ return {
             c = "Class",
           },
         },
-        t = {
+        T = {
           name = "+Term",
           g = { "<cmd>lua require('utils.term').git_client_toggle()<CR>", "Git TUI" },
+        }, -- Database
+        D = {
+          name = "Database",
+          u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+          f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+          r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+          q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
         },
       }, { prefix = "<leader>" })
     end,
