@@ -88,6 +88,7 @@ return {
       telescope.load_extension "aerial"
       telescope.load_extension "dap"
       telescope.load_extension "frecency"
+      telescope.load_extension "flutter"
     end,
   },
   {
