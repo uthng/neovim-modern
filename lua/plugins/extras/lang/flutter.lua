@@ -26,7 +26,7 @@ return {
             showTodos = true,
             renameFilesWithClasses = "prompt",
           },
-          on_attach = require("plugins.lsp.utils").on_attach,
+          -- on_attach = require("plugins.lsp.utils").on_attach,
           capabilities = require("plugins.lsp.utils").capabilities,
         },
       }

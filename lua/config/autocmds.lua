@@ -79,14 +79,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.md", "*.tf", "*.js" },
+  pattern = { "*.md", "*.tf", "*.js", "*.dart" },
   command = "set expandtab tabstop=2 shiftwidth=2 softtabstop=2",
-  group = grpStyleIndent,
-})
-
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.rs" },
-  command = "set expandtab tabstop=4 shiftwidth=4 softtabstop=4",
   group = grpStyleIndent,
 })
 
