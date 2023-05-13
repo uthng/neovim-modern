@@ -36,6 +36,23 @@ return {
         end,
       },
     },
+    -- config = function(_, _)
+    --   local opts = {
+    --     settings = {
+    --       python = {
+    --         analysis = {
+    --           typeCheckingMode = "off",
+    --           autoSearchPaths = true,
+    --           useLibraryCodeForTypes = true,
+    --           diagnosticMode = "workspace",
+    --         },
+    --       },
+    --       venvPath = "/Users/thanhnguyen/.local/share/virtualenvs",
+    --       venv = "codeanalyzer-J6ColJ-1",
+    --     },
+    --   }
+    --   require("lspconfig").pyright.setup(opts)
+    -- end,
   },
   {
     "mfussenegger/nvim-dap",
