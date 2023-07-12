@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.md", "*.tf", "*.js", "*.dart" },
+  pattern = { "*.md", "*.tf", "*.js", "*.dart", "*.proto", "*.asvc" },
   command = "set expandtab tabstop=2 shiftwidth=2 softtabstop=2",
   group = grpStyleIndent,
 })
@@ -97,7 +97,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.rs", "*.php", "*.vue", "*.js", "*.ts", "*.tsx", "*.py" },
+  pattern = { "*.rs", "*.php", "*.vue", "*.js", "*.ts", "*.tsx", "*.py", "*.proto", "*.asvc" },
   callback = function()
     vim.lsp.buf.formatting_sync(nil, 200)
   end,
