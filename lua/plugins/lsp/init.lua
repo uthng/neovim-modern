@@ -16,7 +16,7 @@ return {
     },
     opts = {
       servers = {
-        sumneko_lua = {
+        lua_ls = {
           settings = {
             Lua = {
               workspace = {
@@ -46,7 +46,59 @@ return {
             enable = true,
           },
         },
+        gopls = {
+          settings = {
+            gopls = {
+              buildFlags = { "-tags=integration,unit" },
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+              analyses = {
+                fieldalignment = true,
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+              semanticTokens = true,
+            },
+          },
+        },
         dockerls = {},
+
+        -- gopls = {
+        --   settings = {
+        --     gopls = {
+        --       buildFlags = { "-tags=integration", "-tags=unit" },
+        --       hints = {
+        --         assignVariableTypes = true,
+        --         parameterNames = true,
+        --       },
+        --       staticcheck = true,
+        --     },
+        --   },
+        -- },
       },
       setup = {
         sumneko_lua = function(_, _)
@@ -58,6 +110,65 @@ return {
               vim.keymap.set("n", "<leader>dL", function() require("osv").launch({port = 8086} ) end,{ buffer = buffer, desc = "OSV Launch" })
             end
           end)
+        end,
+        gopls = function(_, _)
+          -- workaround for gopls not supporting semanticTokensProvider
+          -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+          require("plugins.lsp.utils").on_attach(function(client, _)
+            if client.name == "gopls" then
+              if not client.server_capabilities.semanticTokensProvider then
+                -- local semantic = client.config.capabilities.textDocument.semanticTokens
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  -- legend = {
+                  --   tokenTypes = semantic.tokenTypes,
+                  --   tokenModifiers = semantic.tokenModifiers,
+                  -- },
+                  legend = {
+                    tokenTypes = {
+                      "namespace",
+                      "type",
+                      "class",
+                      "enum",
+                      "interface",
+                      "struct",
+                      "typeParameter",
+                      "parameter",
+                      "variable",
+                      "property",
+                      "enumMember",
+                      "event",
+                      "function",
+                      "method",
+                      "macro",
+                      "keyword",
+                      "modifier",
+                      "comment",
+                      "string",
+                      "number",
+                      "regexp",
+                      "operator",
+                      "decorator",
+                    },
+                    tokenModifiers = {
+                      "declaration",
+                      "definition",
+                      "readonly",
+                      "static",
+                      "deprecated",
+                      "abstract",
+                      "async",
+                      "modification",
+                      "documentation",
+                      "defaultLibrary",
+                    },
+                  },
+                  range = true,
+                }
+              end
+            end
+          end)
+          -- end workaround
         end,
       },
     },
