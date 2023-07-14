@@ -21,6 +21,7 @@ return {
     build = ":TSUpdate",
     event = "BufReadPost",
     opts = {
+      ignore_install = { 'help' },
       sync_install = false,
       ensure_installed = {
         "bash",
