@@ -20,61 +20,76 @@ return {
       wk.setup {
         show_help = true,
         plugins = { spelling = true },
-        key_labels = { ["<leader>"] = "SPC" },
-        triggers = "auto",
+        -- replace = { ["<leader>"] = "SPC" },
+        -- triggers = "auto",
       }
-      wk.register({
+      wk.add {
         mode = { "n", "v" },
-        w = { "<cmd>update!<CR>", "Save" },
+        { "<leader>w", "<cmd>update!<CR>", desc = "Save" },
         -- stylua: ignore
-        q = { name = "Quit", 
-          q = { function() require("utils").quit() end, "Quit", },
-          t = { "<cmd>tabclose<cr>", "Close Tab" },
+        { "<leader>Q", group = "Quit"},
+        {
+          "<leader>Qq",
+          function()
+            require("utils").quit()
+          end,
+          desc = "Quit",
         },
-        b = { name = "+Buffer" },
-        d = { name = "+Debug" },
-        f = { name = "+File" },
-        h = { name = "+Help" },
-        g = { name = "+Git" },
-        p = { name = "+Project" },
-        -- t = { name = "+Test", N = { name = "Neotest" }, o = { "Overseer" } },
-        v = { name = "+View" },
-        z = { name = "+System" },
-        -- stylua: ignore
-        s = {
-          name = "+Search",
-          c = { function() require("utils.coding").cht() end, "Cheatsheets", },
-          s = { function() require("utils.coding").stack_overflow() end, "Stack Overflow", },
-          -- n = { name = "+Noice" },
-        },
-        c = {
-          name = "+Code",
-          g = { name = "Annotation" },
-          x = {
-            name = "Swap Next",
-            f = "Function",
-            p = "Parameter",
-            c = "Class",
-          },
-          X = {
-            name = "Swap Previous",
-            f = "Function",
-            p = "Parameter",
-            c = "Class",
-          },
-        },
-        T = {
-          name = "+Term",
-          g = { "<cmd>lua require('utils.term').git_client_toggle()<CR>", "Git TUI" },
-        }, -- Database
-        D = {
-          name = "Database",
-          u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
-          f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
-          r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
-          q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
-        },
-      }, { prefix = "<leader>" })
+        { "<leader>Qt", "<cmd>tabclose<cr>", desc = "Close Tab" },
+        -- q = { name = "Quit",
+        --   q = { function() require("utils").quit() end, "Quit", },
+        --   t = { "<cmd>tabclose<cr>", "Close Tab" },
+        -- },
+        -- b = { name = "+Buffer" },
+        -- d = { name = "+Debug" },
+        -- f = { name = "+File" },
+        -- h = { name = "+Help" },
+        -- g = { name = "+Git" },
+        -- p = { name = "+Project" },
+        -- -- t = { name = "+Test", N = { name = "Neotest" }, o = { "Overseer" } },
+        -- v = { name = "+View" },
+        -- z = { name = "+System" },
+        -- -- stylua: ignore
+        -- s = {
+        --   name = "+Search",
+        --   c = { function() require("utils.coding").cht() end, "Cheatsheets", },
+        --   s = { function() require("utils.coding").stack_overflow() end, "Stack Overflow", },
+        --   -- n = { name = "+Noice" },
+        -- },
+        -- c = {
+        --   name = "+Code",
+        --   g = { name = "Annotation" },
+        --   x = {
+        --     name = "Swap Next",
+        --     f = "Function",
+        --     p = "Parameter",
+        --     c = "Class",
+        --   },
+        --   X = {
+        --     name = "Swap Previous",
+        --     f = "Function",
+        --     p = "Parameter",
+        --     c = "Class",
+        --   },
+        -- },
+        -- T = {
+        --   name = "+Term",
+        --   g = { "<cmd>lua require('utils.term').git_client_toggle()<CR>", "Git TUI" },
+        -- }, -- Database
+        -- D = {
+        --   name = "Database",
+        --   u = { "<Cmd>DBUIToggle<Cr>", "Toggle UI" },
+        --   f = { "<Cmd>DBUIFindBuffer<Cr>", "Find buffer" },
+        --   r = { "<Cmd>DBUIRenameBuffer<Cr>", "Rename buffer" },
+        --   q = { "<Cmd>DBUILastQueryInfo<Cr>", "Last query info" },
+        -- },
+        { "<leader>g", "<cmd>lua require('utils.term').git_client_toggle()<CR>", desc = "Git TUI" },
+        { "<leader>D", group = "Database" },
+        { "<leader>Du", "<Cmd>DBUIToggle<Cr>", desc = "Toggle UI" },
+        { "<leader>Df", "<Cmd>DBUIFindBuffer<Cr>", desc = "Find buffer" },
+        { "<leader>Dr", "<Cmd>DBUIRenameBuffer<Cr>", desc = "Rename buffer" },
+        { "<leader>Dq", "<Cmd>DBUILastQueryInfo<Cr>", desc = "Last query info" },
+      }
     end,
   },
 }
