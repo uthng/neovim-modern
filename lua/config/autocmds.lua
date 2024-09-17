@@ -99,7 +99,16 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.rs", "*.php", "*.vue", "*.js", "*.ts", "*.tsx", "*.py", "*.proto", "*.asvc" },
   callback = function()
-    vim.lsp.buf.formatting_sync(nil, 200)
+    vim.lsp.buf.format {
+      timeout_ms = 2000,
+      filter = function(clients)
+        return vim.tbl_filter(function(client)
+          return pcall(function(_client)
+            return _client.config.settings.autoFixOnSave or false
+          end, client) or false
+        end, clients)
+      end,
+    }
   end,
   group = grpStyleIndent,
 })
@@ -119,6 +128,12 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
     vim.diagnostic.open_float(nil, { focusable = false })
   end,
   group = grpStyleIndent,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "hcl", "terraform" },
+  desc = "terraform/hcl commentstring configuration",
+  command = "setlocal commentstring=#\\ %s",
 })
 
 function _G.set_terminal_keymaps()
