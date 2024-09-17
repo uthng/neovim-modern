@@ -6,7 +6,7 @@ return {
   { "nacro90/numb.nvim", event = "BufReadPre", config = true },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
+    -- event = "BufReadPre",
     config = true,
   },
   {

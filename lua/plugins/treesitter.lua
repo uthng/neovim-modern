@@ -21,7 +21,7 @@ return {
     build = ":TSUpdate",
     event = "BufReadPost",
     opts = {
-      ignore_install = { 'help' },
+      ignore_install = { "help" },
       sync_install = false,
       ensure_installed = {
         "bash",
@@ -38,7 +38,7 @@ return {
       },
       highlight = { enable = true },
       indent = { enable = true, disable = { "python" } },
-      context_commentstring = { enable = true },
+      -- context_commentstring = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -96,6 +96,12 @@ return {
       },
     },
     config = function(_, opts)
+      require("ts_context_commentstring").setup {
+        enable_autocmd = false,
+        languages = {
+          typescript = "// %s",
+        },
+      }
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
